@@ -1,0 +1,669 @@
+/* Globale stijlen en reset */
+:root {
+    --primary-color: #4CAF50; /* Zacht groen voor accenten */
+    --primary-dark: #388E3C;
+    --primary-light: #C8E6C9;
+    --text-dark: #333;
+    --text-light: #fff;
+    --bg-light: #F9F9F9;
+    --bg-medium: #EDEDED;
+    --border-color: #E0E0E0;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    /* Gebruik Roboto als het primaire sans-serif lettertype */
+    --font-family-sans: 'Roboto', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    /* We verwijderen de serif font-family variabele */
+    --danger-color: #D32F2F; /* Rood voor verwijderen */
+    --danger-dark: #C62828;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family-sans); /* Gebruik de sans-serif voor de body */
+    margin: 0;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-dark);
+    margin-bottom: 25px;
+    font-size: 2.5em;
+    text-shadow: 1px 1px 2px var(--shadow-light);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--bg-medium);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+/* Formulier container */
+.plant-form-container {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.plant-form-container h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+#plant-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 25px; /* Verticaal en horizontaal */
+}
+
+#plant-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+#plant-form input[type="text"],
+#plant-form input[type="number"],
+#plant-form input[type="file"],
+#plant-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-family: var(--font-family-sans);
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#plant-form input[type="text"]:focus,
+#plant-form input[type="number"]:focus,
+#plant-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+    outline: none;
+}
+
+#plant-form input[type="file"] {
+    padding: 8px 10px; /* Iets minder padding voor file input */
+}
+
+#plant-form textarea {
+    resize: vertical; /* Alleen verticaal resizen toestaan */
+    min-height: 80px;
+    grid-column: 1 / -1; /* Omschrijving neemt hele breedte in */
+}
+
+/* Nieuwe stijl voor de knopcontainer */
+.form-button-container {
+    grid-column: 1 / -1; /* Neem de volledige breedte in beslag */
+    display: flex;
+    justify-content: flex-end; /* Lijn de knop rechts uit */
+    margin-top: 15px; /* Ruimte boven de knop */
+}
+
+
+#plant-form button[type="submit"] {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: auto; /* Zorgt ervoor dat de knop niet de volledige breedte inneemt */
+}
+
+#plant-form button[type="submit"]:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Filter sectie */
+.filter-container {
+    background: #fff;
+    padding: 20px 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-container label {
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+#filter {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-family: var(--font-family-sans);
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#filter:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+    outline: none;
+}
+
+
+/* Tabel stijlen */
+#plant-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden; /* Zorgt ervoor dat border-radius werkt op de tabelranden */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+#plant-table th,
+#plant-table td {
+    border: 1px solid var(--border-color);
+    padding: 12px 15px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+#plant-table th {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Zorgt ervoor dat de header boven de inhoud blijft bij scrollen */
+}
+
+#plant-table tbody tr:nth-child(even) {
+    background-color: var(--bg-light);
+}
+
+#plant-table tbody tr:hover {
+    background-color: var(--primary-light);
+    cursor: pointer;
+}
+
+/* Selectie checkbox in tabel header */
+#select-all {
+    margin-right: 5px;
+}
+
+/* Afbeeldingen in tabel */
+.img-cell {
+    width: 60px; /* Vaste breedte voor afbeelding kolom */
+    text-align: center;
+}
+
+.thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    vertical-align: middle;
+    display: inline-block; /* Center the image if needed */
+}
+
+.thumbnail.placeholder {
+    background-color: var(--border-color);
+    border: 1px dashed #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+
+/* Actie knoppen in tabel */
+.actions-cell {
+    white-space: nowrap; /* Voorkomt dat knoppen ombreken */
+}
+
+.edit-btn,
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin: 0 5px;
+    padding: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.edit-btn {
+    color: #2196F3; /* Blauw */
+}
+
+.edit-btn:hover {
+    background-color: #E3F2FD;
+    color: #1976D2;
+}
+
+.delete-btn {
+    color: var(--danger-color);
+}
+
+.delete-btn:hover {
+    background-color: #FFEBEE;
+    color: var(--danger-dark);
+}
+
+/* Geselecteerde rij */
+.selected-row {
+    background-color: var(--primary-light) !important; /* !important om over hover te gaan */
+}
+
+/* Actie groep onder de tabel */
+.actions {
+    display: flex;
+    justify-content: flex-start; /* Knoppen links uitlijnen */
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 25px; /* Extra marge onder de knoppen */
+    flex-wrap: wrap; /* Zorgt ervoor dat knoppen naar de volgende regel gaan indien nodig */
+}
+
+.actions button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.actions button:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#export-pdf {
+    background-color: #28a745; /* Groen */
+    color: white;
+}
+
+#export-pdf:hover:not(:disabled) {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+#show-pdf-settings {
+    background-color: #007bff; /* Blauw */
+    color: white;
+}
+
+#show-pdf-settings:hover:not(:disabled) {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.delete-selected-btn {
+    background-color: var(--danger-color); /* Rood */
+    color: white;
+}
+
+.delete-selected-btn:hover:not(:disabled) {
+    background-color: var(--danger-dark);
+    transform: translateY(-2px);
+}
+
+#view-selection {
+    background-color: #FFA000; /* Orange for basket */
+    color: white;
+}
+
+#view-selection:hover:not(:disabled) {
+    background-color: #F57C00;
+    transform: translateY(-2px);
+}
+
+
+/* Modal stijlen */
+.modal {
+    display: none; /* Verborgen standaard */
+    position: fixed; /* Blijft op zijn plaats, zelfs bij scrollen */
+    z-index: 10; /* Boven alles */
+    left: 0;
+    top: 0;
+    width: 100%; /* Volledige breedte */
+    height: 100%; /* Volledige hoogte */
+    overflow: auto; /* Scrollen mogelijk als inhoud te groot is, maar we zullen modal-content scrollbaar maken */
+    background-color: rgba(0, 0, 0, 0.4); /* Zwarte achtergrond met transparantie */
+    justify-content: center; /* Horizontaal centreren */
+    align-items: center; /* Verticaal centreren */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px 30px; /* Reduced vertical padding */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 700px;
+    position: relative;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    max-height: 90vh; /* Max height relative to viewport height */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+/* Add Animation */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    color: var(--primary-dark);
+    margin-bottom: 15px; /* Reduced margin-bottom */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px; /* Reduced padding-bottom */
+}
+
+.modal-content fieldset {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 20px; /* Reduced vertical padding */
+    margin-bottom: 15px; /* Reduced margin-bottom */
+}
+
+.modal-content legend {
+    font-weight: 700;
+    color: var(--primary-color);
+    padding: 0 10px;
+    font-size: 0.95em; /* Slightly smaller font size */
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 5px; /* Reduced margin-bottom */
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 0.9em; /* Slightly smaller font size */
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"],
+.modal-content input[type="url"],
+.modal-content input[type="color"] {
+    width: calc(100% - 24px); /* Aangepast voor padding */
+    padding: 8px 12px; /* Reduced padding */
+    margin-bottom: 10px; /* Reduced margin-bottom */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-family: var(--font-family-sans);
+    font-size: 0.9em; /* Reduced font size */
+}
+
+.modal-content input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.0); /* Slightly smaller scale */
+}
+
+.modal-content button[type="submit"],
+.modal-content .form-button { /* Added .form-button for generic buttons in modal */
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px; /* Reduced padding */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em; /* Adjusted font size */
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-content button[type="submit"]:hover,
+.modal-content .form-button:hover { /* Added .form-button */
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Basket Modal Specific Styles */
+#basket-content {
+    margin-top: 20px;
+}
+
+.basket-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.basket-table th, .basket-table td {
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.basket-table th {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.basket-table tbody tr:nth-child(even) {
+    background-color: var(--bg-light);
+}
+
+.basket-thumbnail {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+.basket-placeholder {
+    background-color: var(--border-color);
+    border: 1px dashed #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.7em;
+    text-align: center;
+}
+
+.basket-overall-total {
+    text-align: right;
+    font-size: 1.1em;
+    color: var(--primary-dark);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.basket-quantity-input {
+    width: 60px;
+    padding: 4px 6px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.remove-from-basket-btn {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+    padding: 0;
+}
+
+.remove-from-basket-btn:hover {
+    color: var(--danger-dark);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+#export-basket-pdf {
+    background-color: #28a745; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#export-basket-pdf:hover:not(:disabled) {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Plant Detail Modal Specific Styles */
+#plant-detail-content p {
+    margin-bottom: 10px;
+}
+
+#plant-detail-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: block; /* Ensures centering if needed */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#plant-detail-content strong {
+    color: var(--primary-dark);
+}
+
+/* Responsiviteit */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    .container {
+        padding: 20px;
+    }
+    #plant-form {
+        grid-template-columns: 1fr;
+    }
+    #plant-form button[type="submit"] {
+        grid-column: auto;
+        width: 100%;
+    }
+    .actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .actions button {
+        width: 100%;
+    }
+    .modal-content {
+        padding: 15px 20px; /* Adjusted padding for very small screens */
+        width: 95%;
+        max-height: 95vh; /* Increase max-height for very small screens */
+    }
+    #plant-table th,
+    #plant-table td {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+    /* Verberg kolommen op kleinere schermen voor leesbaarheid */
+    #plant-table th:nth-child(4), /* Botanisch */
+    #plant-table td:nth-child(4),
+    #plant-table th:nth-child(6), /* Prijs */
+    #plant-table td:nth-child(6),
+    #plant-table th:nth-child(7), /* Omschrijving */
+    #plant-table td:nth-child(7) {
+        display: none;
+    }
+
+    .basket-table th, .basket-table td {
+        font-size: 0.8em; /* Smaller font for basket table on small screens */
+    }
+    .basket-table th:nth-child(4), /* Price per stuk */
+    .basket-table td:nth-child(4) {
+      display: none;
+    }
+    .basket-quantity-input {
+      width: 50px;
+    }
+    .modal-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    #export-basket-pdf {
+      width: 100%;
+    }
+}
+
+/* Specifieke aanpassing voor kleine schermen zodat de knopcontainer ook 100% breedte krijgt */
+@media (max-width: 768px) {
+    .form-button-container {
+        justify-content: center; /* Centreer de knop op kleine schermen */
+    }
+    #plant-form button[type="submit"] {
+        width: 100%; /* Zorg dat de knop 100% breedte inneemt op kleine schermen */
+    }
+}
